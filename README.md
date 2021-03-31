@@ -73,6 +73,12 @@ Show verbose output.
 
 **Default:** `false`
 
+#### observe
+
+Value will override the detection string for triggering the `loaded` function from `Application Started` to the string specified. Note that under dotnetcore 3.1 this value is `App startup configuration COMPLETE`
+
+* value added by Alex Chesser, do not use the default version of gulp-dotnet-watch
+
 #### options
 
 Value options that will configure the dotnet task. For example `[ 'no-launch-profile', 'no-build' ]` would result in `--no-launch-profile --no-build`.
