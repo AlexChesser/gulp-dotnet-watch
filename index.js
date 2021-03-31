@@ -11,6 +11,7 @@ const Defaults = {
 	project: null, // [-p | --project <PROJECT>]; The project to watch
 	quiet: false, // [-q | --quiet]; Suppresses all output except warnings and errors
 	verbose: false, // [-v | --verbose]; Show verbose output
+	observe: "Application Started", // a value representing the string to listen for in order to execute the loaded callback
 	options: null, // [<arg>...]; Value options that will configure the dotnet task. ie. [ 'no-launch-profile', 'no-build' ]
 	arguments: null, // [<arg>...]; Key/value arguments that will configure the dotnet task. ie. { framework: 'net451', verbosity: 'm' }
 	special: {
@@ -118,7 +119,7 @@ class DotnetWatch {
 			this._child.stdout.on('data', (data) => {
 				Log(LogLevels.info, data);
 
-				if (data.indexOf('Application started') > -1) {
+				if (data.indexOf(this.options.observe) > -1) {
 					this.isApplicationStarted = true;
 
 					if (loaded) {
